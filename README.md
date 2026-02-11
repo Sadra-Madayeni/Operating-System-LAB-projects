@@ -150,7 +150,7 @@ We expanded the xv6 kernel capabilities by adding 5 distinct system calls and mo
 * `kernel/sysfile.c`: Implemented file-heavy syscalls (`grep`, `duplicate`).
 * `kernel/fs.c`: Exposed `bmap` and file system helpers for kernel-level I/O.
 
-### User Programs (Testing)
+###  User Programs (Testing)
 We created specific user-level programs to test each feature:
 * `regcalltest`: Uses inline assembly to test register argument passing.
 * `makeduptest`: Duplicates a file and verifies the `.copy` existence.
