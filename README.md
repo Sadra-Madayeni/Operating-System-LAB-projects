@@ -1,6 +1,6 @@
 # xv6 Operating System Enhancements (Project 1)
 
-This repository contains substantial modifications and enhancements to the **xv6 Operating System** kernel. The project focuses on improving the kernel's console interactivity, implementing advanced shell features, and adding custom user-level programs.
+This project contains substantial modifications and enhancements to the **xv6 Operating System** kernel. The project focuses on improving the kernel's console interactivity, implementing advanced shell features, and adding custom user-level programs.
 
 Developed as part of the **Operating Systems Lab **.
 
@@ -92,7 +92,7 @@ We overhauled `console.c` and `kbd.c` to support rich text editing capabilities 
 
 # xv6 System Calls & Kernel Hacking (Project 2)
 
-This repository contains the implementation of custom system calls and kernel enhancements for the **xv6 Operating System**. This project explores kernel-space file management, process scheduling algorithms, and low-level register manipulation.
+This project contains the implementation of custom system calls and kernel enhancements for the **xv6 Operating System**. This project explores kernel-space file management, process scheduling algorithms, and low-level register manipulation.
  
 
 ## 🚀 Key Features Implemented
@@ -287,7 +287,7 @@ We developed user-level programs to stress-test the scheduler:
 
 # xv6 Synchronization & Concurrency (Project 4)
 
-This repository contains advanced modifications to the **xv6 Operating System** kernel, focusing on concurrency control, deadlock prevention, and synchronization primitives. The project addresses limitations in standard spinlocks/sleeplocks and introduces priority-aware scheduling for locks.
+This project contains advanced modifications to the **xv6 Operating System** kernel, focusing on concurrency control, deadlock prevention, and synchronization primitives. The project addresses limitations in standard spinlocks/sleeplocks and introduces priority-aware scheduling for locks.
 
 
 ## 🔐 Key Features Implemented
@@ -325,7 +325,7 @@ We enhanced the xv6 kernel with four major synchronization mechanisms:
 
  # xv6 Memory Management & Page Replacement (Project 5)
 
-This repository contains the final project for the Operating Systems Lab, focusing on **Virtual Memory Management**. We implemented a custom software-managed paging system within the xv6 kernel to simulate restricted physical memory and evaluate various **Page Replacement Algorithms**.
+This project contains the final project for the Operating Systems Lab, focusing on **Virtual Memory Management**. We implemented a custom software-managed paging system within the xv6 kernel to simulate restricted physical memory and evaluate various **Page Replacement Algorithms**.
 
 
 ## 🧠 Core Objectives
@@ -357,6 +357,6 @@ We implemented four distinct replacement policies to handle page faults:
 * **Logic:** A modification of FIFO that gives pages a "second chance" if they have been referenced recently.
 * **Implementation:** Uses a circular buffer and a reference bit (`R`). The pointer moves like a clock hand; if `R=1`, it resets `R=0` and moves on. If `R=0`, that page is evicted.
 
----
+
 
  
