@@ -6,9 +6,9 @@ Developed as part of the **Operating Systems Lab **.
 
 ## 👥 Contributors
 
-* **Sadra Madayeni** (810102564)
-* **Amir Hossein Alikhani** (810102479)
-* **Hasti Abolhassani** (810102378)
+* **Sadra Madayeni** 
+* **Amir Hossein Alikhani**
+* **Hasti Abolhassani**
 
 ---
 
@@ -20,48 +20,48 @@ We modified the xv6 kernel to support modern console features, text manipulation
 We overhauled `console.c` and `kbd.c` to support rich text editing capabilities directly in the kernel console:
 
 * **Cursor Navigation:**
-    * [cite_start]**Left/Right Arrow Keys:** Move the cursor character-by-character within the command line[cite: 24, 47].
+    *  **Left/Right Arrow Keys:** Move the cursor character-by-character within the command line[cite: 24, 47].
     * **Word Navigation:**
-        * [cite_start]`Ctrl + D`: Move cursor to the **beginning of the next word**[cite: 94].
-        * [cite_start]`Ctrl + A`: Move cursor to the **beginning of the previous/current word**[cite: 116].
+        *  `Ctrl + D`: Move cursor to the **beginning of the next word**[cite: 94].
+        *  `Ctrl + A`: Move cursor to the **beginning of the previous/current word**[cite: 116].
 
 * **Undo Mechanism (`Ctrl + Z`):**
     * Implemented a history buffer struct (`edit_op`) to track insertion and deletion operations.
-    * [cite_start]Supports multi-level undo functionality, reverting text changes and restoring cursor positions dynamically[cite: 167, 183].
+    *  Supports multi-level undo functionality, reverting text changes and restoring cursor positions dynamically[cite: 167, 183].
 
 * **Clipboard & Text Selection:**
-    * **Selection (`Ctrl + S`):** Toggles selection mode. Users can highlight a substring of the command line. [cite_start]Highlighted text is rendered with a distinct background color (white highlight)[cite: 230, 253].
-    * [cite_start]**Copy (`Ctrl + C`):** Copies the selected text into a kernel-level clipboard buffer[cite: 258].
-    * [cite_start]**Paste (`Ctrl + V`):** Inserts the clipboard content at the current cursor position[cite: 274].
+    * **Selection (`Ctrl + S`):** Toggles selection mode. Users can highlight a substring of the command line.  Highlighted text is rendered with a distinct background color (white highlight)[cite: 230, 253].
+    *  **Copy (`Ctrl + C`):** Copies the selected text into a kernel-level clipboard buffer[cite: 258].
+    *  **Paste (`Ctrl + V`):** Inserts the clipboard content at the current cursor position[cite: 274].
     * **Delete Selection:** Pressing `Backspace` or replacing text while selected is fully supported.
 
 ### 2. Shell Enhancements
 * **Tab Autocompletion:**
     * Modified `sh.c` to support dynamic command completion.
-    * Pressing `TAB` scans available commands and programs. If a unique match is found, it auto-completes the command. [cite_start]If multiple matches exist, it cycles through valid options[cite: 371, 435].
+    * Pressing `TAB` scans available commands and programs. If a unique match is found, it auto-completes the command.  If multiple matches exist, it cycles through valid options[cite: 371, 435].
 
 ### 3. User-Level Programs
 * **`find_sum` Utility:**
     * A custom C program added to `UPROGS` in the Makefile.
-    * **Usage:** Accepts a string containing numbers and characters. [cite_start]It extracts all integers, calculates their sum, and writes the result to a file named `result.txt`[cite: 300, 318].
+    * **Usage:** Accepts a string containing numbers and characters.  It extracts all integers, calculates their sum, and writes the result to a file named `result.txt`[cite: 300, 318].
     * *Example:* Input `op1e2rati34ng5` $\rightarrow$ Output `42` (1+2+34+5).
 
 ### 4. Boot Customization
-* [cite_start]Modified `init.c` to display the project contributors' names upon system boot, verifying successful kernel compilation and entry into user space[cite: 6, 7].
+*  Modified `init.c` to display the project contributors' names upon system boot, verifying successful kernel compilation and entry into user space[cite: 6, 7].
 
 ---
 
 ## 🛠️ Technical Implementation Details
 
 ### File Modifications
-* **`console.c` & `kbd.c`:** The core logic for cursor movement, reference counting for the undo buffer, and the state machine for text selection (highlighting) was implemented here. [cite_start]We handled specific scan codes (e.g., `0xE4` for Left, `0xE5` for Right) to map physical keys to logical cursor actions[cite: 24].
+* **`console.c` & `kbd.c`:** The core logic for cursor movement, reference counting for the undo buffer, and the state machine for text selection (highlighting) was implemented here.  We handled specific scan codes (e.g., `0xE4` for Left, `0xE5` for Right) to map physical keys to logical cursor actions[cite: 24].
 * **`sh.c`:** Enhanced to handle the `TAB` key interrupt and interface with the file system to find executable matches for autocompletion.
 * **`init.c`:** Altered the initialization process to print the group greeting.
 * **`find_sum.c`:** Created a new source file utilizing file descriptors (`open`, `write`) and string parsing.
 
 ### Challenges Solved
 * **Visual Rendering:** One of the main challenges was updating the CRT controller (`CRTPORT`) correctly to move the blinking cursor without corrupting the video memory buffer, especially during "Undo" operations where multiple characters shift simultaneously.
-* [cite_start]**Buffer Management:** Implementing Copy/Paste required a dedicated static buffer (`clipboard_buf`) and careful boundary checks to prevent buffer overflows during paste operations[cite: 210].
+*  **Buffer Management:** Implementing Copy/Paste required a dedicated static buffer (`clipboard_buf`) and careful boundary checks to prevent buffer overflows during paste operations[cite: 210].
 
 ---
 
